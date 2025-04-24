@@ -1,7 +1,16 @@
 const fs = require("fs");
 const path = require("path");
+const express = require("express")
+const cors = require('cors')
 
+const app  = express()
 const FilePath = path.join(__dirname, 'data.json');
+app.use(cors())
+app.use(express.json())
+require('dotenv').config({ path: '.env.development.local' })
+const base_url = process.env.END_POINT
+const host = "0.0.0.0" //ensures it listens on all network interfaces
+
 
 function AddUser(req, res) {
     const newUser = req.body;
